@@ -3,41 +3,41 @@ import json
 
 
 class FileStorage:
-    """_summary_
-    """
+	"""_summary_
+	"""
 
-    __file_path = "file.json"
-    __objects = {}
+	__file_path = "file.json"
+	__objects = {}
 
-    def all(self):
-        """_summary_
-        """
-        return FileStorage.__objects
+	def all(self):
+		"""_summary_
+		"""
+		return FileStorage.__objects
 
-    def new(self, obj):
-        """_summary_
+	def new(self, obj):
+		"""_summary_
 
-        Args:
-            obj (_type_): _description_
-        """
-        """Creo que asi es """
-        FileStorage.__objects[obj.__class__.__name__ + "." + obj.id] = obj
+		Args:
+			obj (_type_): _description_
+		"""
+		"""se exyrae directamente el dicionario aparti de la funcion to_dict() """
+		FileStorage.__objects[str(obj.__class__.__name__) + "." + str(obj.id)] = obj.to_dict()
 
-    def save(self):
-        """_summary_
-        """
-        """Nose como hacerlo"""
-        with open(FileStorage.__file_path, mode="w") as my_file:
-            # my_file.write(json.dumps(FileStorage.__objects))
-            for cl in FileStorage.__objects.values():
-                json.dump(cl.to_dict(), my_file)
+	def save(self):
+		"""_summary_
+		"""
+		"""con la correccion de la funcion new() se pasa directamente el dicionario y no presenta problemas """
+		with open(FileStorage.__file_path, mode="a") as my_file:
+			json.dump(FileStorage.__objects, my_file, indent=0)
 
-    def reload(self):
-        """_summary_
-        """
-        try:
-            with open(FileStorage.__file_path, mode="r") as my_file:
-                return json.load(my_file.read())
-        except:
-            pass
+	def reload(self):
+		"""_summary_
+		"""
+		try:
+			with open(FileStorage.__file_path, mode="r") as my_file:
+				var = json.load(my_file)
+				FileStorage.__objects = var
+		except :
+			pass
+		
 
