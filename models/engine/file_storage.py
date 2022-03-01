@@ -20,15 +20,15 @@ class FileStorage:
 		Args:
 			obj (_type_): _description_
 		"""
-		"""se exyrae directamente el dicionario aparti de la funcion to_dict() """
-		FileStorage.__objects[str(obj.__class__.__name__) + "." + str(obj.id)] = obj.to_dict()
+		"""se extrae directamente el dicionario apartir de la funcion to_dict() """
+		FileStorage.__objects[type(obj).__name__ + "." + obj.id] = obj.to_dict()
 
 	def save(self):
 		"""_summary_
 		"""
 		"""con la correccion de la funcion new() se pasa directamente el dicionario y no presenta problemas """
-		with open(FileStorage.__file_path, mode="a") as my_file:
-			json.dump(FileStorage.__objects, my_file, indent=0)
+		with open(FileStorage.__file_path, mode="w") as my_file:
+			json.dump(FileStorage.__objects, my_file)
 
 	def reload(self):
 		"""_summary_
