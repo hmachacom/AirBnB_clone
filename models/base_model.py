@@ -28,8 +28,8 @@ class BaseModel:
         else:
             self.created_at = datetime.now()
             self.id = str(uuid4())
-            self.my_number = 0
-            self.name = ""
+            """self.my_number = 0
+            self.name = """
             storage.new(self)
 
     def __str__(self):
@@ -50,12 +50,10 @@ class BaseModel:
     def to_dict(self):
         """_summary_
 		"""
-        return {
-            "my_number": self.my_number,
-            "name": self.name,
-            "__class__": self.__class__.__name__,
-            "updated_at": self.updated_at.isoformat(),
-            "id": self.id,
-            "created_at": self.created_at.isoformat(),
-        }
+        dic = self.__dict__
+        dic['__class__'] = type(self).__name__
+        dic['created_at'] = self.created_at.isoformat()
+        dic['updated_at'] = self.updated_at.isoformat()
+        return dic
+            
 
