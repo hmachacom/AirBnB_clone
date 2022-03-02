@@ -16,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
         """ Quit command to exit the program"""
         return True
     
-    def do_emptyline(self):
+    def emptyline(self):
         """ an empty line + ENTER shouldn’t execute anything"""
         pass
 
