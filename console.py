@@ -52,7 +52,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             elif len(to_show) < 2:
                 print("** instance id missing **")
-            elif str(to_show[0] + "." + to_show[1]) not in storage.all().keys():
+            elif (
+                str(to_show[0] + "." + to_show[1])
+                not in storage.all().keys()
+            ):
                 print("** no instance found **")
             else:
                 share_class = str(to_show[0] + "." + to_show[1])
@@ -76,7 +79,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             elif len(to_destroy) < 2:
                 print("** instance id missing **")
-            elif str(to_destroy[0] + "." + to_destroy[1]) not in storage.all().keys():
+            elif (
+                str(to_destroy[0] + "." + to_destroy[1])
+                not in storage.all().keys()
+            ):
                 print("** no instance found **")
             else:
                 del_class = str(to_destroy[0] + "." + to_destroy[1])
@@ -85,7 +91,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class name missing **")
 
-    
     def do_all(self, line):
         """_summary_
 
@@ -96,14 +101,14 @@ class HBNBCommand(cmd.Cmd):
         to_all = line.split()
         new_list = []
         if len(to_all) >= 1:
-            all_class =self.all_class(storage.all())
+            all_class = self.all_class(storage.all())
             if to_all[0] in all_class:
                 for key, value in storage.all().items():
                     cls = key.split(".", 1)
                     if to_all[0] == cls[0]:
                         new_list.append(str(value))
                 print(new_list)
-            else :
+            else:
                 print("** class doesn't exist **")
         else:
             for key, value in storage.all().items():
@@ -121,5 +126,7 @@ class HBNBCommand(cmd.Cmd):
             tmp = key.split(".", 1)
             new_class.append(tmp[0])
         return new_class
+
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
