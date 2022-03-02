@@ -5,28 +5,38 @@ from types import new_class
 
 class FileStorage:
     """_summary_
-	"""
+    """
 
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
         """_summary_
-		"""
+        """
         return FileStorage.__objects
+
+    def dic_del(self, key):
+        """_summary_
+
+        Args:
+            key (_type_): _description_
+        """
+        if key in self.__objects.keys():
+            del self.__objects[key]
+        self.save()
 
     def new(self, obj):
         """_summary_
 
-		Args:
-			obj (_type_): _description_
-		"""
+        Args:
+            obj (_type_): _description_
+        """
         """se guarda el objeto directamente en el diccionario al momento de codificar el JSON se extare con la funcion to_dict"""
         FileStorage.__objects[type(obj).__name__ + "." + obj.id] = obj
 
     def save(self):
         """_summary_
-		"""
+        """
         """se crea un dicionario vacio para guardar los datos de los objetos con la funcion to_dict()"""
         new_dict = {}
         with open(FileStorage.__file_path, mode="w") as my_file:
@@ -36,12 +46,11 @@ class FileStorage:
 
     def reload(self):
         """_summary_
-		"""
+        """
         from models.base_model import BaseModel
-        from datetime import datetime
 
         """Se importa la clase aqui para evitar errores de importacion
-			ademas se crean nuevamente las instancias apartir del los datos JSON"""
+            ademas se crean nuevamente las instancias apartir del los datos JSON"""
         try:
 
             with open(FileStorage.__file_path, mode="r") as my_file:
