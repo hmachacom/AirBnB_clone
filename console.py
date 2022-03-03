@@ -132,6 +132,44 @@ class HBNBCommand(cmd.Cmd):
             new_class.append(tmp[0])
         return new_class
 
+    def do_update(self, line):
+        """_summary_
+
+        Args:
+            line (_type_): _description_
+        """
+        storage.reload()
+        to_update = line.split()
+        if len(to_update) >= 1:
+            if len(to_update) == 1:
+                print("** instance id missing **")
+            elif len(to_update) == 2:
+                print("** attribute name missing **")
+            elif len(to_update) == 3:
+                print("** value missing **")
+
+            elif len(to_update) >= 4:
+                if to_update[0] in self.all_class(storage.all()):
+                    this_dict = storage.all()
+                    this_key = str(to_update[0] + "." + to_update[1])
+                    if this_key in this_dict.keys():
+                        this_obj = this_dict[this_key]
+                        new_dict = this_obj.to_dict()
+                        key_attr = to_update[2]
+                        value_attr = to_update[3]
+                        new_dict[key_attr] = value_attr
+                        new_instans = eval(to_update[0])(**new_dict)
+                        storage.new(new_instans)
+                        storage.save()
+                    else:
+                        print("** no instance found **")
+
+                else:
+                    print("** class doesn't exist **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

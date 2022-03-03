@@ -46,14 +46,14 @@ class FileStorage:
         """_summary_
         """
         from models.base_model import BaseModel
-
+        from models.user import User
         try:
 
             with open(FileStorage.__file_path, mode="r") as my_file:
                 var = json.load(my_file)
                 for key, value in var.items():
                     new_class = value["__class__"]
-                    new_obj = BaseModel(**value)
+                    new_obj = eval(new_class)(**value)
                     self.new(new_obj)
         except Exception:
             pass
