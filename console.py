@@ -2,6 +2,7 @@
 import cmd
 from types import new_class
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
@@ -9,6 +10,7 @@ class HBNBCommand(cmd.Cmd):
     """ Class command interpreter """
 
     prompt = " (hbnb) "
+    class_inherit = ["BaseModel", "User"]
 
     def do_EOF(self, line):
         """ exit the program """
@@ -25,12 +27,15 @@ class HBNBCommand(cmd.Cmd):
             line (_type_): _description_
         """
 
-        if line == "BaseModel":
-            new_class = BaseModel()
-            print(new_class.id)
-            new_class.save()
+        if line:
+            if line == self.class_inherit[0]:
+                new_class = BaseModel()
+            elif line == self.class_inherit[1]:
+                new_class = User() 
+            new_class.save()          
+            print(new_class.id)  
         else:
-            if line == "":
+            if not self.class_inherit:
                 print("** class name missing **")
             else:
                 print("** class doesn't exist **")
@@ -48,7 +53,7 @@ class HBNBCommand(cmd.Cmd):
         storage.reload()
         to_show = line.split()
         if len(to_show) >= 1:
-            if to_show[0] != "BaseModel":
+            if to_show[0] not in self.class_inherit:
                 print("** class doesn't exist **")
             elif len(to_show) < 2:
                 print("** instance id missing **")
@@ -75,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
         storage.reload()
         to_destroy = line.split()
         if len(to_destroy) >= 1:
-            if to_destroy[0] != "BaseModel":
+            if to_destroy[0] not in self.class_inherit:
                 print("** class doesn't exist **")
             elif len(to_destroy) < 2:
                 print("** instance id missing **")
