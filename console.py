@@ -2,15 +2,22 @@
 import cmd
 from types import new_class
 from models.base_model import BaseModel
-from models.user import User
 from models import storage
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+
 
 
 class HBNBCommand(cmd.Cmd):
     """ Class command interpreter """
 
-    prompt = " (hbnb) "
-    class_inherit = ["BaseModel", "User"]
+    prompt = "(hbnb) "
+    class_inherit = ["BaseModel", "User", "State", "City",
+                     "Amenity", "Place", "Review"]
 
     def do_EOF(self, line):
         """ exit the program """
@@ -25,20 +32,31 @@ class HBNBCommand(cmd.Cmd):
 
         Args:
             line (_type_): _description_
-        """
 
+        """
         if line:
-            if line == self.class_inherit[0]:
-                new_class = BaseModel()
-            elif line == self.class_inherit[1]:
-                new_class = User() 
-            new_class.save()          
-            print(new_class.id)  
-        else:
-            if not self.class_inherit:
-                print("** class name missing **")
-            else:
+           
+            if line not in self.class_inherit:
                 print("** class doesn't exist **")
+            else:
+                if line == self.class_inherit[0]:
+                    new_class = BaseModel()
+                elif line == self.class_inherit[1]:
+                    new_class = User() 
+                elif line == self.class_inherit[2]:
+                    new_class = State()   
+                elif line == self.class_inherit[3]:
+                    new_class = City() 
+                elif line == self.class_inherit[4]:
+                    new_class = Amenity()
+                elif line == self.class_inherit[5]:
+                    new_class = Place()
+                elif line == self.class_inherit[6]:
+                    new_class = Review() 
+                new_class.save()          
+                print(new_class.id)  
+        else:
+            print("** class name missing  **")
 
     def emptyline(self):
         """ an empty line + ENTER shouldn’t execute anything"""

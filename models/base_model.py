@@ -30,7 +30,6 @@ class BaseModel:
 
     def __str__(self):
         """_summary_
-
         Returns:
             _type_: _description_
         """
