@@ -4,7 +4,7 @@
   <img src="https://github.com/hmachacom/AirBnB_clone/blob/main/images/logohbnb.png" alt="HolbertonBnB logo">
 </p>
 
-## :page_whit_curl: Description 
+## :page_whit_curly: Description 
 
 In this project we make a complete web application, integrating database storage,
 a back-end API, and front-end interfacing in a clone of AirBnB.
@@ -25,7 +25,7 @@ console.py file is the entry point of our command interpreter.
 
 - `models/engine`models/engine directory will contain all storage classes (using the same prototype). For the moment we have only one: `file_storage.py`.
 
-## :floppy_disk:Storage
+## :floppy_disk: Storage
 
 In this project, we manipulate 2 types of storage: file and database. For the moment, we only work whit file. 
 
@@ -45,8 +45,6 @@ The console will be a tool to validate this storage engine
 
 ### Commands
 
-### Using the console
-
 |Command | Description | Use |
 | ------ | ----------- | ----| 
 | create | Create an instance (object) and print its id. | create <class name>|
@@ -57,6 +55,7 @@ The console will be a tool to validate this storage engine
 | quit and EOF | exit the program | quit or EOF|
 | help | This action is provided by cmd by default, but should be kept up to date and documented. | help|
 
+### Using the console
 
 - The console run in:
 
