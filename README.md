@@ -38,7 +38,7 @@ This abstraction will also allow you to change the type of storage easily withou
 The console will be a tool to validate this storage engine
 
 <p align="center">
-  <img src="" alt="HolbertonBnB logo">
+  <img src="https://github.com/hmachacom/AirBnB_clone/blob/main/images/img2.png" alt="HolbertonBnB logo">
 </p>
 
 ## :pencil: Commands and how to use it 
