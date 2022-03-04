@@ -4,7 +4,7 @@
   <img src="https://github.com/hmachacom/AirBnB_clone/blob/main/images/logohbnb.png" alt="HolbertonBnB logo">
 </p>
 
-## :page_whit_curly: Description 
+## :page_with_curl: Description 
 
 In this project we make a complete web application, integrating database storage,
 a back-end API, and front-end interfacing in a clone of AirBnB.
