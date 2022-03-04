@@ -56,7 +56,7 @@ The console will be a tool to validate this storage engine
 | update | Updates an instance based on the class name and id by adding or updating attribute. | update <class name> <id> <attribute name> "<attribute value>"|
 | quit and EOF | exit the program | quit or EOF|
 | help | This action is provided by cmd by default, but should be kept up to date and documented. | help|
-| ------ | ----------- | ----|
+
 
 - The console run in:
 
