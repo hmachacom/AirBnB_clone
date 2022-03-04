@@ -4,7 +4,7 @@
   <img src="https://github.com/hmachacom/AirBnB_clone/blob/main/images/logohbnb.png" alt="HolbertonBnB logo">
 </p>
 
-## :pencil: Description 
+## :page_whit_curl: Description 
 
 In this project we make a complete web application, integrating database storage,
 a back-end API, and front-end interfacing in a clone of AirBnB.
@@ -25,7 +25,7 @@ console.py file is the entry point of our command interpreter.
 
 - `models/engine`models/engine directory will contain all storage classes (using the same prototype). For the moment we have only one: `file_storage.py`.
 
-## Storage
+## :floppy_disk:Storage
 
 In this project, we manipulate 2 types of storage: file and database. For the moment, we only work whit file. 
 
@@ -100,7 +100,7 @@ $ ./console.py
 $
 ```
 
-## Testing 
+## :memo: Testing 
 
 All files, classes, functions be tested with unit tests
 
@@ -113,6 +113,6 @@ Unit tests must also pass in non-interactive mode:
 $ echo "python3 -m unittest discover tests" | bash
 ```
 
-## :man: Authors 
+## :information_desk_person: Authors 
 * **Hugo Machacon** <[hmachacon](https://github.com/hmachacom)>
 * **Carolina Espitia** <[caritoespicaita](https://github.com/caritoespicaita)>
