@@ -10,6 +10,14 @@ from datetime import datetime, date
 
 class TestsBaseModel(unittest.TestCase):
 
+
+    def test_instancia(self):
+        """ test of instance"""
+        my_object = BaseModel()
+        self.assertEqual(str(type(my_object)), "<class 'models.base_model.BaseModel'>")
+        self.assertIsInstance(my_object, BaseModel)
+        self.assertTrue(issubclass(type(my_object), BaseModel))
+   
     def test_attributes(self):
         """ verify attributes """
         my_object = BaseModel()
