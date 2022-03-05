@@ -1,17 +1,18 @@
 #!/usr/bin/python3
+""" Filestorage Class """
 import json
 from types import new_class
 
 
 class FileStorage:
-    """_summary_
+    """ Filestorage Class
     """
 
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """_summary_
+        """ Returns dictionary
         """
         return FileStorage.__objects
 
@@ -26,15 +27,13 @@ class FileStorage:
         self.save()
 
     def new(self, obj):
-        """_summary_
-
-        Args:
-            obj (_type_): _description_
+        """ Sets in __objects the obj with
+            key <obj class name>.id
         """
         FileStorage.__objects[type(obj).__name__ + "." + obj.id] = obj
 
     def save(self):
-        """_summary_
+        """ Serializes __objects to the JSON file
         """
         new_dict = {}
         with open(FileStorage.__file_path, mode="w") as my_file:
@@ -43,7 +42,7 @@ class FileStorage:
             json.dump(new_dict, my_file)
 
     def reload(self):
-        """_summary_
+        """ Deserializes the JSON file to __objects
         """
         from models.base_model import BaseModel
         from models.user import User
@@ -52,7 +51,7 @@ class FileStorage:
         from models.amenity import Amenity
         from models.place import Place
         from models.review import Review
-        
+
         try:
 
             with open(FileStorage.__file_path, mode="r") as my_file:
