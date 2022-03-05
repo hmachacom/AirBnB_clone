@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" Class BaseModels """
 from cgitb import strong
 from datetime import datetime
 from uuid import uuid4
@@ -10,8 +11,11 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-        """_summary_
         """
+        Arguments
+            - **kwargs: dictionary that contains all arguments by key/value
+        """
+
         if len(kwargs) >= 1 and kwargs is not None:
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -24,14 +28,10 @@ class BaseModel:
             self.updated_at = datetime.now()
             self.created_at = datetime.now()
             self.id = str(uuid4())
-            """self.my_number = 0
-            self.name = """
             storage.new(self)
 
     def __str__(self):
-        """_summary_
-        Returns:
-            _type_: _description_
+        """str representation of an object
         """
         return (
             "[{}] ({}) {}"
@@ -39,14 +39,16 @@ class BaseModel:
         )
 
     def save(self):
-        """_summary_
+        """update the public instance attribute updated_at
+           whit the current date time
         """
         self.updated_at = datetime.now()
         storage.new(self)
         storage.save()
 
     def to_dict(self):
-        """_summary_
+        """ returns a dictionary containing
+            all keys/values of __dict__ of the instance
         """
         format_string = "%Y-%m-%dT%H:%M:%S.%f"
         dic = dict(**self.__dict__)
@@ -62,6 +64,4 @@ class BaseModel:
             if type(self.updated_at) == str
             else self.updated_at.isoformat()
         )
-        """ dic["created_at"] = self.created_at.isoformat()
-        dic["updated_at"] = self.updated_at.isoformat() """
         return dic
