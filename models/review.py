@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" Class Review inherit from BaseModel """
 from models.base_model import BaseModel
 
 
