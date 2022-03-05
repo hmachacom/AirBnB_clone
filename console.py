@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" HBNBCommand """
 import cmd
 from types import new_class
 from models.base_model import BaseModel
@@ -9,7 +10,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-
 
 
 class HBNBCommand(cmd.Cmd):
@@ -35,26 +35,25 @@ class HBNBCommand(cmd.Cmd):
 
         """
         if line:
-           
             if line not in self.class_inherit:
                 print("** class doesn't exist **")
             else:
                 if line == self.class_inherit[0]:
                     new_class = BaseModel()
                 elif line == self.class_inherit[1]:
-                    new_class = User() 
+                    new_class = User()
                 elif line == self.class_inherit[2]:
-                    new_class = State()   
+                    new_class = State()
                 elif line == self.class_inherit[3]:
-                    new_class = City() 
+                    new_class = City()
                 elif line == self.class_inherit[4]:
                     new_class = Amenity()
                 elif line == self.class_inherit[5]:
                     new_class = Place()
                 elif line == self.class_inherit[6]:
-                    new_class = Review() 
-                new_class.save()          
-                print(new_class.id)  
+                    new_class = Review()
+                new_class.save()
+                print(new_class.id)
         else:
             print("** class name missing  **")
 
@@ -188,6 +187,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
