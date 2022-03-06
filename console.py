@@ -180,7 +180,10 @@ class HBNBCommand(cmd.Cmd):
                         this_obj = this_dict[this_key]
                         new_dict = this_obj.to_dict()
                         key_attr = to_update[2]
-                        value_attr = to_update[3]
+                        modification = to_update[3]
+                        if '"' in to_update[3]:
+                            modification = to_update[3].replace('"', '')
+                        value_attr = modification
                         new_dict[key_attr] = value_attr
                         new_instans = eval(to_update[0])(**new_dict)
                         storage.new(new_instans)
