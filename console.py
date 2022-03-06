@@ -16,8 +16,15 @@ class HBNBCommand(cmd.Cmd):
     """ Class command interpreter """
 
     prompt = "(hbnb) "
-    class_inherit = ["BaseModel", "User", "State", "City",
-                     "Amenity", "Place", "Review"]
+    class_inherit = [
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Amenity",
+        "Place",
+        "Review"
+        ]
 
     def do_EOF(self, line):
         """ exit the program """

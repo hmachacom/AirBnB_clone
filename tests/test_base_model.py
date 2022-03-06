@@ -8,12 +8,13 @@ from datetime import datetime, date
 
 
 class TestsBaseModel(unittest.TestCase):
-
     def test_instancia(self):
         """ test of instance"""
         my_object = BaseModel()
-        self.assertEqual(str(type(my_object)),
-                         "<class 'models.base_model.BaseModel'>")
+        self.assertEqual(
+            str(type(my_object)),
+            "<class 'models.base_model.BaseModel'>"
+        )
         self.assertIsInstance(my_object, BaseModel)
         self.assertTrue(issubclass(type(my_object), BaseModel))
 
@@ -32,5 +33,5 @@ class TestsBaseModel(unittest.TestCase):
         self.assertEqual(type(my_object.__dict__), dict)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
