@@ -180,11 +180,13 @@ class HBNBCommand(cmd.Cmd):
                         this_obj = this_dict[this_key]
                         new_dict = this_obj.to_dict()
                         key_attr = to_update[2]
-                        print(len(to_update))
-                        if to_update[3][0] == '"' and len(to_update) >= 4:
-                            for i in range(4,len(to_update)):
+                        if to_update[3][0] == '"' and len(to_update) > 4:
+                            for i in range(4, len(to_update)):
                                 to_update[3] += " " + to_update[i]
-                        to_update[3] = to_update[3] if to_update[3][0] != '"' else to_update[3][1:-1]
+                        to_update[3] = (
+                            int(to_update[3])
+                            if to_update[3][0] != '"' else to_update[3][1:-1]
+                            )
                         value_attr = to_update[3]
                         new_dict[key_attr] = value_attr
                         new_instans = eval(to_update[0])(**new_dict)
