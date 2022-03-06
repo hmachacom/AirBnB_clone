@@ -30,10 +30,32 @@ class HBNBCommand(cmd.Cmd):
         storage.reload()
         to_default = line.split("(", 1)
         if len(to_default) > 0:
+            to_arguments = to_default[1].replace("\"", "", 2)
+            to_arguments = to_arguments if ")" not in to_arguments else to_arguments.replace(")", "")
             to_default = to_default[0].split(".", 1)
             if len(to_default) > 0:
                 if to_default[1] == "all":
                     return self.do_all(to_default[0])
+                elif to_default[1] == "count":
+                    return self.count(to_default[0])
+                elif to_default[1] == "show":
+                    return self.do_show(to_default[0] + " " + to_arguments)
+                elif to_default[1] == "destroy":
+                    return self.do_destroy(to_default[0] + " " + to_arguments)
+                elif to_default[1] == "update":
+                    to_arguments = to_arguments.split(",")
+                    for i in range(1, len(to_arguments)):
+                        if "{" in to_arguments[i] or "}" in to_arguments[i]:
+                            to_arguments[i] = to_arguments[i].replace("{", "") if "{" in to_arguments[i] else to_arguments[i].replace("}", "")
+                            if ":" in to_arguments[i]:
+                                to_arguments[i] = to_arguments[i].split(":",)
+                                print(to_arguments[i][0])
+                                to_arguments[i][0] = to_arguments[i][0].replace("\"", "'")
+                                to_arguments[i][0] = to_arguments[i][0].replace(" ", "")
+                        print(to_arguments[i])
+                    ''' for j in to_arguments:
+                        to_default[0] += " " + j '''
+                    print(to_default[0])
                 else:
                     return super().default(line)
         else:
@@ -156,8 +178,26 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage.all().items():
                 new_list.append(str(value))
             print(new_list)
+            
+    def count(self, line):
+        """_summary_
 
-    
+        Args:
+            line (_type_): _description_
+        """
+        storage.reload()
+        to_all = line.split()
+        new_list = 0
+        if len(to_all) >= 1:
+            all_class = self.all_class(storage.all())
+            if to_all[0] in all_class:
+                for key, value in storage.all().items():
+                    cls = key.split(".", 1)
+                    if to_all[0] == cls[0]:
+                        new_list += 1
+                print(new_list)
+            else:
+                print("** class doesn't exist **")
 
     def all_class(self, dit):
         """_summary_
