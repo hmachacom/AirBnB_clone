@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Class BaseModels """
-from cgitb import strong
+
 from datetime import datetime
 from uuid import uuid4
 from models import storage
@@ -33,14 +33,11 @@ class BaseModel:
     def __str__(self):
         """str representation of an object
         """
-        return (
-            "[{}] ({}) {}"
-            .format(self.__class__.__name__, self.id, self.__dict__)
-        )
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """update the public instance attribute updated_at
-           whit the current date time
+    		whit the current date time
         """
         self.updated_at = datetime.now()
         storage.new(self)
