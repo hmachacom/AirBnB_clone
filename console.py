@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ HBNBCommand """
 import cmd
-from types import new_class
+import re
 from models.base_model import BaseModel
 from models import storage
 from models.user import User
@@ -25,6 +25,19 @@ class HBNBCommand(cmd.Cmd):
         "Place",
         "Review"
         ]
+
+    def default(self, line):
+        storage.reload()
+        to_default = line.split("(", 1)
+        if len(to_default) > 0:
+            to_default = to_default[0].split(".", 1)
+            if len(to_default) > 0:
+                if to_default[1] == "all":
+                    return self.do_all(to_default[0])
+                else:
+                    return super().default(line)
+        else:
+            return super().default(line)
 
     def do_EOF(self, line):
         """ exit the program """
@@ -143,6 +156,8 @@ class HBNBCommand(cmd.Cmd):
             for key, value in storage.all().items():
                 new_list.append(str(value))
             print(new_list)
+
+    
 
     def all_class(self, dit):
         """_summary_
