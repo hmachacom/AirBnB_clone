@@ -1,0 +1,16 @@
+header{
+		color: white;
+		border-bottom: solid 1px #CCCCCC;
+		height: 70px;
+		width: 100%;
+		background-image: url('../images/logo.png');
+		background-repeat: no-repeat;
+		margin: 0%;
+
+}
+div.container{
+	max-width: 1000px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	display: block;
+}

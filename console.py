@@ -16,23 +16,16 @@ class HBNBCommand(cmd.Cmd):
     """ Class command interpreter """
 
     prompt = "(hbnb) "
-    class_inherit = [
-        "BaseModel",
-        "User",
-        "State",
-        "City",
-        "Amenity",
-        "Place",
-        "Review"
-        ]
+    class_inherit = ["BaseModel", "User", "State", "City", "Amenity", "Place", "Review"]
 
     def default(self, line):
         storage.reload()
         to_default = line.split("(", 1)
         if len(to_default) > 0:
-            to_arguments = to_default[1].replace("\"", "", 2)
+            to_arguments = to_default[1].replace('"', "", 2)
             to_arguments = (
-                to_arguments if ")" not in to_arguments
+                to_arguments
+                if ")" not in to_arguments
                 else to_arguments.replace(")", "")
             )
             to_default = to_default[0].split(".", 1)
@@ -45,7 +38,16 @@ class HBNBCommand(cmd.Cmd):
                     return self.do_show(to_default[0] + " " + to_arguments)
                 elif to_default[1] == "destroy":
                     return self.do_destroy(to_default[0] + " " + to_arguments)
-
+                elif to_default[1] == "update":
+                    to_arguments = to_arguments.split(",")
+                    print(to_arguments[1])
+                    id = to_arguments[0]
+                    lis_arguments = []
+                    for i in range(1, len(to_arguments)):
+                        lis_arguments.append(to_arguments[i].split(":"))
+                    for x in range(len(lis_arguments)):
+	                    string = string.replace(characters[x],"")
+                    print(lis_arguments)
                 else:
                     return super().default(line)
         else:
@@ -106,10 +108,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             elif len(to_show) < 2:
                 print("** instance id missing **")
-            elif (
-                str(to_show[0] + "." + to_show[1])
-                not in storage.all().keys()
-            ):
+            elif str(to_show[0] + "." + to_show[1]) not in storage.all().keys():
                 print("** no instance found **")
             else:
                 share_class = str(to_show[0] + "." + to_show[1])
@@ -133,10 +132,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
             elif len(to_destroy) < 2:
                 print("** instance id missing **")
-            elif (
-                str(to_destroy[0] + "." + to_destroy[1])
-                not in storage.all().keys()
-            ):
+            elif str(to_destroy[0] + "." + to_destroy[1]) not in storage.all().keys():
                 print("** no instance found **")
             else:
                 del_class = str(to_destroy[0] + "." + to_destroy[1])
@@ -230,8 +226,9 @@ class HBNBCommand(cmd.Cmd):
                                 to_update[3] += " " + to_update[i]
                         to_update[3] = (
                             int(to_update[3])
-                            if to_update[3][0] != '"' else to_update[3][1:-1]
-                            )
+                            if to_update[3][0] != '"'
+                            else to_update[3][1:-1]
+                        )
                         value_attr = to_update[3]
                         new_dict[key_attr] = value_attr
                         new_instans = eval(to_update[0])(**new_dict)

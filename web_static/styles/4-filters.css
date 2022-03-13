@@ -1,0 +1,27 @@
+
+button{
+	size: 18px;
+	background-color: #ff5a5f;
+	color: #FFFFFF;
+	height: 48px;
+	width: 20%;
+	border: none;
+	border-radius: 4px;
+	
+
+}
+section.filters{
+	height: 70px;
+	width: 100%;
+	align-items: center;
+	color: white;
+	display: flex;
+	justify-content: right;
+	border: #DDDDDD solid 1px;
+	border-radius: 4px;
+	padding-right: 30px;
+}
+
+button:hover{
+	opacity: 90%;
+}
